@@ -94,13 +94,19 @@ We aim to bottle everything.
 
 ## Why should I install Homebrew in the default location?
 
-Homebrew's pre-built binary packages (known as [bottles](Bottles.md)) of many formulae can only be used if you install in the default installation prefix, otherwise they have to be built from source. Building from source takes a long time, is prone to failure, and is not supported. The default prefix is `~/.brew` in the user's home directory.
+The default installation prefix is `~/.brew` in the user's home directory. This provides a user-space installation that keeps all Homebrew files self-contained and doesn't require admin privileges. However, **installing to `~/.brew` means pre-built binary packages (bottles) are not available**, and all formulae must be built from source. Building from source takes a long time, is prone to failure, and is not officially supported.
 
-Do yourself a favour and install to the default prefix so that you can use our pre-built binary packages. *Pick another prefix at your peril!*
+If you want to use Homebrew's pre-built binary packages (bottles), you should install to one of the traditional bottle-compatible prefixes instead:
 
-## Why is the default installation prefix `~/.brew` in the user's home directory?
+* `/opt/homebrew` for macOS on Apple Silicon,
+* `/usr/local` for macOS on Intel, or
+* `/home/linuxbrew/.linuxbrew` for Linux.
 
-The prefix `~/.brew` was chosen to provide a user-space installation that doesn't require admin privileges and keeps all Homebrew files self-contained within the user's home directory. This makes Homebrew fully portable and easier to manage without system-wide permissions.
+Installing to these traditional prefixes allows you to use pre-built binary packages. *Installing to a non-standard prefix means building from source at your peril!*
+
+## Why is the default installation prefix `~/.brew`?
+
+The prefix `~/.brew` was chosen to provide a user-space installation that keeps all Homebrew files self-contained within the user's home directory, making it easier to manage and fully portable without requiring admin privileges. The trade-off is that bottles (pre-built binaries) are not available for this prefix, so formulae must be built from source.
 
 ## Why does Homebrew say sudo is bad?
 

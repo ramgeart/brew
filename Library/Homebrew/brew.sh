@@ -30,11 +30,17 @@ case "${OSTYPE}" in
 esac
 HOMEBREW_PHYSICAL_PROCESSOR="${HOMEBREW_PROCESSOR}"
 
-# User-space installation in home directory
+# Ensure HOME is set; fallback to evaluating ~ if not
+if [[ -z "${HOME:-}" ]]
+then
+  HOME="$(cd ~ && pwd 2>/dev/null)"
+fi
+
+# User-space installation in home directory (default for new installations)
 HOMEBREW_USER_DEFAULT_PREFIX="${HOME}/.brew"
 HOMEBREW_USER_DEFAULT_REPOSITORY="${HOMEBREW_USER_DEFAULT_PREFIX}"
 
-# Legacy default prefixes for backwards compatibility
+# Legacy default prefixes (for bottle compatibility)
 HOMEBREW_MACOS_ARM_DEFAULT_PREFIX="/opt/homebrew"
 HOMEBREW_MACOS_ARM_DEFAULT_REPOSITORY="${HOMEBREW_MACOS_ARM_DEFAULT_PREFIX}"
 HOMEBREW_LINUX_DEFAULT_PREFIX="/home/linuxbrew/.linuxbrew"
